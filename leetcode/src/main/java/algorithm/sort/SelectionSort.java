@@ -1,6 +1,8 @@
 package algorithm.sort;
 
+import Utils.SortTestHelper;
 import Utils.Util;
+import org.junit.Test;
 
 public class SelectionSort {
 
@@ -16,6 +18,15 @@ public class SelectionSort {
             }
             Util.swap(arr, i, minIndex);
         }
+    }
+
+    @Test
+    public void test_sort() {
+        int N = 20;
+        System.out.println("Test for random array, size = " + N + " , random range [0, " + N + "]");
+        Integer[] arr1 = Util.generateRandomArray(N, 0, N);
+        SortTestHelper.testSort(arr1, SelectionSort::sort, "选择排序");
+        Util.printArray(arr1);
     }
 
 }

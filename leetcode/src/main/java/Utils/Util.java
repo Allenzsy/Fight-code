@@ -27,5 +27,26 @@ public class Util {
         System.out.println();
     }
 
+    // 生成有n个元素的随机数组,每个元素的随机范围为[rangeL, rangeR]
+    public static Integer[] generateRandomArray(int n, int rangeL, int rangeR) {
+        assert rangeL <= rangeR;
+
+        Integer[] arr = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            // 生成左闭，右闭
+            arr[i] = new Integer((int) (Math.random() * (rangeR - rangeL + 1) + rangeL));
+        }
+        return arr;
+    }
+
+    // 判断arr数组是否有序
+    public static <T extends Comparable> boolean isSorted(T[] arr){
+
+        for( int i = 0 ; i < arr.length - 1 ; i ++ )
+            if( arr[i].compareTo(arr[i+1]) > 0 )
+                return false;
+        return true;
+    }
+
 
 }
