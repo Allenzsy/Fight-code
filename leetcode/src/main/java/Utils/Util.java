@@ -1,11 +1,15 @@
 package Utils;
 
+import java.util.Random;
+
 /**
  * @Author Allenzsy
  * @Date 2021/12/22 23:26
  * @Description:
  */
 public class Util {
+
+    private static final Random RANDOM = new Random();
 
     public static <T> void swap(T[] arr, int i, int j) {
         T temp = arr[i];
@@ -35,6 +39,8 @@ public class Util {
         for (int i = 0; i < n; i++) {
             // 生成左闭，右闭
             arr[i] = new Integer((int) (Math.random() * (rangeR - rangeL + 1) + rangeL));
+            // 第二种写法
+//            arr[i] = new Integer(RANDOM.nextInt(rangeR)%(rangeR-rangeL+1) + rangeL);
         }
         return arr;
     }

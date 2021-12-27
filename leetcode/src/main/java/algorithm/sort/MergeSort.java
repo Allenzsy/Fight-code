@@ -13,12 +13,15 @@ import java.util.Arrays;
  */
 public class MergeSort {
 
+    /**
+     * 对外提供统一的接口
+     */
     public static <T extends Comparable> void sort(T[] arr) {
         dfs(arr, 0, arr.length - 1);
     }
 
     /**
-     * 对 [r, l] 进行归并排序
+     * 对 [r, l] 进行归并排序，分治算法思想
      */
     private static <T extends Comparable> void dfs(T[] arr, int l, int r) {
         if(l >= r) {
@@ -30,19 +33,33 @@ public class MergeSort {
         merge(arr, l, mid, r);
     }
 
+    /**
+     * 对 [l, mid] 和 [mid+1, r] 进行归并，大致思想是用 3 个指针，分别指向
+     * 1. 要合并到的数组首元素
+     * 2. 左侧待合并数组的首元素
+     * 3. 右侧待合并数组的首元素
+     */
     private static <T extends Comparable> void merge(T[] arr, int l, int mid, int r) {
         T[] aux = Arrays.copyOf(arr, r-l+1);
 
-        int i = l;
-        int j = mid+1;
+        int i = l;      // i指向左侧待归并数组的首元素
+        int j = mid+1;  // j指向右侧待归并数组的首元素
         for (int c = l; c <=r; c++) {
-
-            if (j > r ||aux[i-l].compareTo(aux[j-l]) < 0) {
+            // 1.如果左侧待归并的数组都已经遍历完了，就只需要把右侧数组剩余的元素都放入 arr 中
+            if (i > mid) {
+                arr[c] = aux[j - l];
+                j++;
+            // 2.若相反，就只需要把左侧数组剩余的元素都放入 arr 中
+            } else if (j > r){
                 arr[c] = aux[i-l];
                 i++;
-            } else if (i > mid || aux[i-l].compareTo(aux[j-l]) >= 0) {
-                arr[c] = aux[j-l];
+            // 没有任意一组元素遍历完就正常判断哪个元素小，就放入 arr 中
+            } else if (aux[i-l].compareTo(aux[j-l]) >= 0){
+                arr[c] = aux[j - l];
                 j++;
+            } else if (aux[i-l].compareTo(aux[j-l]) < 0) {
+                arr[c] = aux[i-l];
+                i++;
             }
         }
     }
