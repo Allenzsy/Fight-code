@@ -11,7 +11,6 @@ import org.junit.Test;
  */
 public class QuickSort {
 
-
     public static <T extends Comparable> void sort(T[] arr) {
         sort(arr, 0, arr.length-1);
     }
@@ -23,7 +22,6 @@ public class QuickSort {
         int pIndex = partition(arr, l, r);
         sort(arr, l, pIndex-1);
         sort(arr, pIndex+1, r);
-
     }
 
     private static <T extends Comparable> int partition(T[] arr, int l, int r) {
@@ -34,15 +32,13 @@ public class QuickSort {
            [j+1, i] 是 >p 的元素
          */
         int j = l;   // 初始化成 l 则数组[l+1, j]初始是空的没有元素，注意这种思想老师反复提到
-        int i = l+1; // 同上
+        int i = l+1; // 同上，使[j+1, i]初始时空的
         T p = arr[l];// 这里也可以不缓存一直用 arr[l] 表示 partition 的标准
 
-        while (i <= r) {
+        for (; i <= r; i++) {
             if (arr[i].compareTo(p) < 0) {
-                Util.swap(arr, ++j, i);
-                i++;
-            } else {
-                i++;
+                j++; // j 先自增再把小于 P 的元素交换过来，这样j就依旧指向<p 部分的数组最后一个元素了
+                Util.swap(arr, j, i);
             }
         }
         Util.swap(arr, l, j);

@@ -93,7 +93,7 @@ public class MergeSort {
 
     @Test
     public void test_sort_optimized() {
-        int N = 20;
+        int N = 20000;
         System.out.println("Test for random array, size = " + N + " , random range [0, " + N + "]");
         Integer[] arr1 = Util.generateNearlyOrderedArray(N, 2);
         Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
@@ -102,9 +102,6 @@ public class MergeSort {
         long endTime = System.currentTimeMillis();
         assert Util.isSorted(arr1);
         System.out.println(String.format("%s耗时：%s ms", "使用插入排序优化", endTime-startTime));
-
-        Util.printArray(arr1);
-        Util.printArray(arr2);
 
         long startTime1 = System.currentTimeMillis();
         MergeSort.sortNormal(arr2, 0, arr2.length-1);
