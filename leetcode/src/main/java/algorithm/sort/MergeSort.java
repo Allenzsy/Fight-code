@@ -16,7 +16,7 @@ public class MergeSort {
     /**
      * 对外提供统一的接口
      */
-    public static <T extends Comparable> void sort(T[] arr) {
+    public static <T extends Comparable<T>> void sort(T[] arr) {
         sortWithInsertion(arr, 0, arr.length - 1);
     }
 
@@ -25,7 +25,7 @@ public class MergeSort {
      * 1. 只有当 arr[mid] > arr[mid+1] 才进行归并
      * 2. 分治到一定元素的数组时，转为插入排序会更快（老师在C++环境演示确实快了一些，但是在我的环境却慢了。。。）
      */
-    private static <T extends Comparable> void sortWithInsertion(T[] arr, int l, int r) {
+    private static <T extends Comparable<T>> void sortWithInsertion(T[] arr, int l, int r) {
         if(r-l <= 15) {
             InsertionSort.sort(arr, l, r); // 只剩一个元素就可以返回进行归并了
             return;
@@ -44,7 +44,7 @@ public class MergeSort {
      * 2.左侧待合并数组的首元素
      * 3.右侧待合并数组的首元素
      */
-    private static <T extends Comparable> void merge(T[] arr, int l, int mid, int r) {
+    private static <T extends Comparable<T>> void merge(T[] arr, int l, int mid, int r) {
         T[] aux = Arrays.copyOf(arr, r-l+1);
 
         int i = l;      // i指向左侧待归并数组的首元素
@@ -69,7 +69,7 @@ public class MergeSort {
         }
     }
 
-    private static <T extends Comparable> void sortNormal(T[] arr, int l, int r) {
+    private static <T extends Comparable<T>> void sortNormal(T[] arr, int l, int r) {
         if(l >= r) {
             return; // 只剩一个元素就可以返回进行归并了
         }

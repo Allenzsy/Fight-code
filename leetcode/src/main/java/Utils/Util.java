@@ -66,7 +66,7 @@ public class Util {
     }
 
     // 判断arr数组是否有序
-    public static <T extends Comparable> boolean isSorted(T[] arr){
+    public static <T extends Comparable<T>> boolean isSorted(T[] arr){
 
         for( int i = 0 ; i < arr.length - 1 ; i ++ )
             if( arr[i].compareTo(arr[i+1]) > 0 )

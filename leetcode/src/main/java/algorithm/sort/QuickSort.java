@@ -11,11 +11,11 @@ import org.junit.Test;
  */
 public class QuickSort {
 
-    public static <T extends Comparable> void sort(T[] arr) {
+    public static <T extends Comparable<T>> void sort(T[] arr) {
         sort(arr, 0, arr.length-1);
     }
 
-    public static <T extends Comparable> void sort(T[] arr, int l, int r) {
+    public static <T extends Comparable<T>> void sort(T[] arr, int l, int r) {
         if (l>=r) {
             return;
         }
@@ -24,7 +24,7 @@ public class QuickSort {
         sort(arr, pIndex+1, r);
     }
 
-    private static <T extends Comparable> int partition(T[] arr, int l, int r) {
+    private static <T extends Comparable<T>> int partition(T[] arr, int l, int r) {
         /* 1.定义 p 指向第一个元素，作为 partition 的标准
            2.j 指向 <p 部分的数组最后一个元素
            3.i 指向待进行 partition 的元素

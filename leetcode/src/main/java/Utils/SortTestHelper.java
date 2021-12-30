@@ -13,7 +13,7 @@ public class SortTestHelper {
      * @param sortExecutor
      * @param <T>
      */
-    public static <T extends Comparable> void testSort(T[] arr, SortExecutor<T> sortExecutor, String name) {
+    public static <T extends Comparable<T>> void testSort(T[] arr, SortExecutor<T> sortExecutor, String name) {
         long startTime = System.currentTimeMillis();
         sortExecutor.execute(arr);
         long endTime = System.currentTimeMillis();
