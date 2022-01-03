@@ -26,9 +26,9 @@ public class QuickSortTwoWays {
 
     public static <T extends Comparable<T>> int[] partitionTwoWays(T[] arr, int l, int r) {
         /* 1.定义 p 指向第一个元素，作为 partition 的标准
-           2.用 i 指向 <=p 数组的下一个值, j 指向 >=p 数组的前一个值
-           3.[l+1, i) 是 <=p 的元素
-             (j, r] 是 >=p 的元素 */
+           2.用 i 指向 <=p 数组的下一个值, j 指向 >=p 数组的前一个值，则有
+           3.[l+1, i) <= p
+             (j, r]   >= p */
         Util.swap(arr, l, (int)(Math.random()*(r-l+1) + l));
         T p = arr[l];
         int i = l+1;
@@ -39,7 +39,7 @@ public class QuickSortTwoWays {
                 i++; // 如果 i 指向的元素一直小于 p 且不越界则直接++
             }
             while (j>=l+1 && arr[j].compareTo(p) > 0) {
-                j--; // 如果 j 指向的元素一直大于 p 且不越界则直接++
+                j--; // 如果 j 指向的元素一直大于 p 且不越界则直接--
             }
             if (i > j) {
                 break;
