@@ -11,7 +11,20 @@ import org.junit.Test;
  */
 public class QuickSortThreeWays {
 
-    public static <T extends Comparable<T>> void partitionThreeWays(T[] arr, int l, int r) {
+    public static <T extends Comparable<T>> void sort(T[] arr) {
+        sort(arr, 0, arr.length-1);
+    }
+
+    public static <T extends Comparable<T>> void sort(T[] arr, int l, int r) {
+        if (l >= r) {
+            return;
+        }
+        int[] pIndex = partitionThreeWays(arr, l, r);
+        sort(arr, l, pIndex[0]);
+        sort(arr, pIndex[1], r);
+    }
+
+    public static <T extends Comparable<T>> int[] partitionThreeWays(T[] arr, int l, int r) {
         /* 1.定义 i 指向当前待 partition 的元素，则有
              [l+1, lt]  < p
              [lt+1, i)  = p
@@ -20,7 +33,7 @@ public class QuickSortThreeWays {
         T p = arr[l];
 
         int lt = l;     // 初始值选取还是按照初始区间为空
-        int gt = r+1;   // 如果这里写 r 并且把下面的 gt-1 改成 gt 则得不到正确的 partition 结果，这是因为 while 的结束条件还是 (i<gt) 要改成 (i<=gt)
+        int gt = r+1;   // 如果这里写 r 并且把下面的 gt-1 改成 gt 则得不到正确的 partition 结果，这是因为 while 的结束条件还是 (i<gt) 要对应改成 (i<=gt) 才行
         int i = lt+1;
 
         while (i < gt) {
@@ -36,7 +49,9 @@ public class QuickSortThreeWays {
             }
         }
         Util.swap(arr, l, lt);
-        // 由于把 p 和 lt 交换了，因此 lt-- 后才能满足之前的定义
+        // 由于把 p 和 lt 交换了，因此 lt-- 后才能满足之前指向最后一个小于 p 的元素的定义
+        return new int[]{--lt, gt};
+
     }
 
     @Test
@@ -46,7 +61,7 @@ public class QuickSortThreeWays {
         Integer[] arr1 = Util.generateRandomArray(N, 0, N);
         Integer[] arr2 = new Integer[]{3,15,2,7,1,19,6,10,16,8,11,13,13,17,7,11,19,20,10,13};
         Util.printArray(arr2);
-        partitionThreeWays(arr2, 0, arr1.length-1);
+        sort(arr2, 0, arr1.length-1);
         Util.printArray(arr2);
     }
 

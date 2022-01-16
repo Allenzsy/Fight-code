@@ -48,6 +48,7 @@ public class QuickSortTwoWays {
             i++;
             j--;
         }
+        // 最后的终止位置是 j 在 i 的左边，所以此时 j 指向的位置是 p 元素的最终位置
         Util.swap(arr, l, j);
         return new int[]{j, i};
     }
