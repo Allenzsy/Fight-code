@@ -55,16 +55,18 @@ public class TreeNode {
     }
 
     public static void main(String[] args) {
-        preOrder(parseTree(new Integer[]{3,9,20,null,null,15,7,null,null,null,null,2,3,4,5}));
+        preOrder(parseTree(new Integer[]{3,9,20,null,null,15,7,null,null,null,null,2,3,4,5}), 0);
     }
 
-    public static void preOrder(TreeNode root) {
+    public static void preOrder(TreeNode root, int deep) {
         if(root == null) {
             return;
         }
-        System.out.println(root.val);
-        preOrder(root.left);
-        preOrder(root.right);
+        deep++;
+        preOrder(root.left, deep);
+        preOrder(root.right, deep);
+
+        System.out.println(deep);
     }
 
 }
