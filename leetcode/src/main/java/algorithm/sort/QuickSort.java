@@ -1,8 +1,9 @@
 package algorithm.sort;
 
-import Utils.SortTestHelper;
 import Utils.Util;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 /**
  * @Author Allenzsy
@@ -53,6 +54,49 @@ public class QuickSort {
         Util.printArray(arr1);
         sort(arr1, 0, arr1.length-1);
         Util.printArray(arr1);
+    }
+
+    @Test
+    public void quick_sort_0726() {
+        int N = 20;
+        System.out.println("Test for random array, size = " + N + " , random range [0, " + N + "]");
+        Integer[] arr1 = Util.generateRandomArray(N, 0, N);
+        int[] arr = Arrays.stream(arr1).mapToInt(Integer::intValue).toArray();
+        Util.printArray(arr);
+        quickSort0726(arr, 0, arr.length-1);
+        Util.printArray(arr);
+    }
+
+    /**
+     * e 当前值索引, <p 的最后一个元素索引 i，
+     * 若比 p 小则交换 e 和 i+1 并 e++ i++, 若比 p 大，则不交换并且 e++
+     * [l+1, i] <= p
+     * [i+1, e) > p
+     * @param nums
+     * @param l
+     * @param r
+     * @return
+     */
+    public static int partition0726(int[] nums, int l, int r) {
+        int p = nums[l];
+        int i = l, e = l+1;
+
+        for(; e <= r; e++) {
+            if(nums[e] < p) {
+                i++;
+                Util.swap(nums, e, i);
+            }
+        }
+        Util.swap(nums, l, i);
+        return i;
+    }
+    public static void quickSort0726(int[] nums, int l ,int r) {
+        if(l >= r) {
+            return;
+        }
+        int pIndex = partition0726(nums, l, r);
+        quickSort0726(nums, l, pIndex-1);
+        quickSort0726(nums, pIndex+1, r);
     }
 
 
