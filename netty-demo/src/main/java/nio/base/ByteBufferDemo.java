@@ -1,12 +1,10 @@
-package nio.base.nioserver;
+package nio.base;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import util.ByteBufferUtil;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * @Author Allenzsy
@@ -14,31 +12,7 @@ import java.util.Iterator;
  * @Description:
  */
 @Slf4j
-public class ArrayListTest {
-
-    public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        list.add(6);
-        Iterator<Integer> iterator = list.iterator();
-        while (iterator.hasNext()) {
-            Integer e = iterator.next();
-            if(e == 3) {
-                iterator.remove();
-            }
-            log.info("{}", e);
-        }
-        iterator = list.iterator();
-        while (iterator.hasNext()) {
-            Integer e = iterator.next();
-            log.info("{}", e);
-        }
-        log.info("{}", 1 << 0);
-    }
+public class ByteBufferDemo {
 
     @Test
     public void test(){

@@ -44,8 +44,6 @@ public class StreamDemo {
         // A中B的补集: A-B
         List<String> A_B = A.stream().filter(e -> !B.contains(e)).collect(Collectors.toList());
         log.info("A中B的补集: {}", A_B);
-
-
     }
 
 }

@@ -1,4 +1,4 @@
-package nio.base.bioserver;
+package nio.bioserver;
 
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;

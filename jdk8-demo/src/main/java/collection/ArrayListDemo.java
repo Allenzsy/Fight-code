@@ -1,16 +1,20 @@
 package collection;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @Author Allenzsy
  * @Date 2022/6/8 23:25
  * @Description:
  */
+@Slf4j
 public class ArrayListDemo {
 
     /**
@@ -45,6 +49,13 @@ public class ArrayListDemo {
                 a.remove(temp);
             }
         }
+    }
+
+    @Test
+    public void test_replace_element() {
+        List<Integer> list = IntStream.of(1, 2, 3, 4, 5).boxed().collect(Collectors.toList());
+        list.set(2, 100);
+        log.info("{}", list);
     }
 
 }

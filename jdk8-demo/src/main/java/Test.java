@@ -1,21 +1,26 @@
-import org.icepdf.core.exceptions.PDFException;
-import org.icepdf.core.exceptions.PDFSecurityException;
-import org.icepdf.core.pobjects.Document;
-import org.icepdf.core.util.GraphicsRenderingHints;
-
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageOutputStream;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Iterator;
-
-
-
 public class Test {
+
+/*            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>2.0.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox-tools</artifactId>
+                <version>2.0.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.icepdf.os</groupId>
+                <artifactId>icepdf-core</artifactId>
+                <version>6.2.2</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.media</groupId>
+                        <artifactId>jai_core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>*/
 
     /**
      * 将指定pdf文件的首页转换为指定路径的缩略图
@@ -25,7 +30,7 @@ public class Test {
      * @param zoom 缩略图显示倍数，1表示不缩放，0.3则缩小到30%
      * @return 生成图片名称列表
      */
-    public void tranfer(String filepath, String imagepath, float zoom) throws PDFException,
+    /*public void tranfer(String filepath, String imagepath, float zoom) throws PDFException,
             PDFSecurityException, IOException, InterruptedException{
         // ICEpdf document class
         Document document = null;
@@ -55,6 +60,6 @@ public class Test {
         } catch (PDFException | PDFSecurityException | IOException e) {
             System.err.println("出错啦: " + e.getMessage());
         }
-    }
+    }*/
 
 }

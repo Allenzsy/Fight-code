@@ -12,7 +12,7 @@
     <artifactId>jdk8-demo</artifactId>
 
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
         </dependency>
@@ -29,7 +29,7 @@
                     <artifactId>jai_core</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
