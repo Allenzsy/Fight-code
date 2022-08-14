@@ -32,10 +32,14 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <root level="ERROR">
+    <logger name="netty.chat.client.ChatClient" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT"/>
-    </root>
+    </logger>
+    <logger name="netty.chat.client.ChatServer" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 
+    <!-- 低于 INFO 级别的不显示 -->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>

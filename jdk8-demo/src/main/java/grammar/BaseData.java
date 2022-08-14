@@ -14,6 +14,11 @@ public class BaseData {
         System.out.println(i1 == i2);
         System.out.println(i1.equals(Boolean.TRUE));
 
+        int a = 3, b = 7;
+        int d = 5;
+        int c = d = a+b;
+        System.out.println((c));
+        System.out.println((d));
     }
 
 }
