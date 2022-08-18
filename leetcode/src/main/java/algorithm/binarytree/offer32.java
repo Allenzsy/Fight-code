@@ -1,4 +1,4 @@
-package leetcodes.binarytree;
+package algorithm.binarytree;
 
 import datastructure.TreeNode;
 

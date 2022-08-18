@@ -1,4 +1,4 @@
-package leetcodes;
+package Utils;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
