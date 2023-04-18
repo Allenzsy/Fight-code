@@ -11,8 +11,11 @@ public class BaseData {
         Integer i1 = 40;
         Integer i2 = 40;
 
+        Integer i3 = 256;
+        Integer i4 = 256;
+
         System.out.println(i1 == i2);
-        System.out.println(i1.equals(Boolean.TRUE));
+        System.out.println(i3 == i4);
 
         int a = 3, b = 7;
         int d = 5;
