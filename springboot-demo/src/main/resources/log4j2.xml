@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <!-- log4j2组件在内部使用状态记录器。在配置中设置status="debug"(或" trace")将导致此内部日志记录输出到命令行。 -->
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+        <logger name="org.springframework.jdbc" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="com.zsy.base.mapper" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+    </Loggers>
+</Configuration>

@@ -6,7 +6,7 @@
     <!-- 输出控制，格式控制-->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%date{HH:mm:ss} [%-5level] [%thread] %logger{17} - %m%n </pattern>
+            <pattern>%date{yyyy-MM-dd'T'HH:mm:ss.SSSZ}: [%-5level] [%thread] %logger{17} - %m%n </pattern>
         </encoder>
     </appender>
     <!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -24,7 +24,7 @@
     </appender>-->
 
     <!-- 用来控制查看那个类的日志内容（对mybatis name 代表命名空间） -->
-    <logger name="cn.itcast" level="DEBUG" additivity="false">
+    <logger name="netty.chat.protocol.MessageCodec" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
 
@@ -32,9 +32,14 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <root level="ERROR">
+    <logger name="netty.chat.client.ChatClient" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT"/>
-    </root>
+    </logger>
+    <logger name="netty.chat.client.ChatServer" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <!-- 低于 INFO 级别的不显示 -->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>

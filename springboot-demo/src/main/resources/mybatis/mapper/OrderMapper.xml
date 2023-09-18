@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsy.base.mapper.OrderMapper">
+
+    <resultMap id="OrderResultMap" type="com.zsy.base.po.OrderDo">
+        <id property="id" column="id"/>
+        <id property="pid" column="pid"/>
+        <id property="name" column="name"/>
+        <id property="createTime" column="create_Time"/>
+    </resultMap>
+
+    <insert id="insertOrder" parameterType="OrderDo" useGeneratedKeys="true">
+        insert into `order` (`pid`, `name`, `create_time`)
+        values (#{pid}, #{name}, #{createTime, jdbcType=TIMESTAMP})
+    </insert>
+
+    <!-- 这里不指定 parameterType 会报错 -->
+    <select id="queryList" parameterType="List" resultType="OrderDo" resultMap="OrderResultMap">
+        SELECT * FROM `order` where `pid` IN
+        <foreach item="item" collection="pids" open="(" separator="," close=")" index="i">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- 这里不指定 parameterType 会报错 -->
+    <select id="queryUseDollar" resultType="OrderDo" resultMap="OrderResultMap">
+        SELECT * FROM `order` where `id` = ${id} and name != '${addition}'
+    </select>
+
+    <select id="queryUseHashtag" resultType="OrderDo" resultMap="OrderResultMap">
+        SELECT * FROM `order` where name != #{addition, jdbcType=VARCHAR} and `id` = ${id}
+    </select>
+
+</mapper>

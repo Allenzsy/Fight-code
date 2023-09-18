@@ -3,11 +3,14 @@ package collection;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * @Author Allenzsy
@@ -16,6 +19,26 @@ import java.util.stream.IntStream;
  */
 @Slf4j
 public class ArrayListDemo {
+
+    @Test
+    public void test_ArrayToList() {
+
+        String[] strings = new String[]{"1", "2", "3", "4"};
+        List<String> stringList = Stream.of("1", "2", "3", "4").collect(Collectors.toList());
+        log.info("{}, {}", stringList.getClass(), stringList);
+        stringList = Stream.of(strings).collect(Collectors.toList());
+        log.info("{}, {}", stringList.getClass(), stringList);
+        stringList = Arrays.stream(strings).collect(Collectors.toList());
+        log.info("{}, {}", stringList.getClass(), stringList);
+
+        int i = 'c'-'a';
+        int[] ints = new int[26];
+        int i1 = ints['c' - 'a'];
+        System.out.println(i);
+
+
+
+    }
 
     /**
      * 一个有趣的现象,只有两个元素的时候不会抛出快速失败的异常,
@@ -41,6 +64,7 @@ public class ArrayListDemo {
      */
     @Test
     public void test_foreach_fast_fail() {
+        String[] strings = {"1", "2", "3"};
         List<String> a = new ArrayList<>();
         a.add("1"); a.add("2"); a.add("3");
         for (String temp : a) {
@@ -56,6 +80,12 @@ public class ArrayListDemo {
         List<Integer> list = IntStream.of(1, 2, 3, 4, 5).boxed().collect(Collectors.toList());
         list.set(2, 100);
         log.info("{}", list);
+    }
+
+    @Test
+    public void test_1() throws Exception{
+        final String encode = URLEncoder.encode("服务池参数缓存", "UTF-8");
+        System.out.println(encode);
     }
 
 }
