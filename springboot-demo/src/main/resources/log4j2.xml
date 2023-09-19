@@ -6,16 +6,25 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
     </Appenders>
+    <!-- 日志记录器配置 -->
     <Loggers>
+        <!-- 记录器的日志名字，这个日志记录器的名字与我们每个类里面获取的Logger对象对应，
+            对应的关系就是通过这个name来匹配的，匹配规则一般是满足Logger配置的name前缀，
+            每个logger元素的日志上下文中都存在一个LoggerConfig配置对象来管理配置-->
+<!--        <Logger name="org.springframework.jdbc" level="DEBUG" additivity="false">-->
+<!--            <appender-ref ref="Console"/>-->
+<!--        </Logger>-->
+        <Logger name="com.zsy" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+        </Logger>
+
+        <!-- 每个配置都必须有一个根记录器。前面的Logger日志配置器未匹配到则走默认的根记录器
+        如果未配置默认根 LoggerConfig，其级别为 ERROR 并附加了控制台附加程序，将被使用。
+        根记录器和其他记录器之间的主要区别是:
+        1.根记录器没有名称属性。
+        2.根记录器不支持可加性属性，因为它没有父记录器-->
         <Root level="DEBUG">
             <AppenderRef ref="Console"/>
         </Root>
-
-        <logger name="org.springframework.jdbc" level="DEBUG" additivity="false">
-            <appender-ref ref="Console"/>
-        </logger>
-        <logger name="com.zsy.base.mapper" level="DEBUG" additivity="false">
-            <appender-ref ref="Console"/>
-        </logger>
     </Loggers>
 </Configuration>

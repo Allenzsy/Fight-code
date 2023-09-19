@@ -3,10 +3,7 @@ package com.zsy.tx;
 import com.zsy.base.config.DruidConfig;
 import com.zsy.base.mapper.OrderMapper;
 import com.zsy.base.po.OrderDo;
-import com.zsy.tx.service.A;
-import com.zsy.tx.service.AService;
-import com.zsy.tx.service.SpringUtil;
-import com.zsy.tx.service.TxSelfCallService;
+import com.zsy.tx.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.mybatis.spring.annotation.MapperScan;
@@ -96,6 +93,60 @@ public class IOCTest_Tx {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void tx_sqlSession_in_require() {
+        ConfigurableApplicationContext context = SpringApplication.run(IOCTest_Tx.class);
+        TradeService tradeService = context.getBean(TradeService.class);
+        log.error("测试 SqlSession 在 Spring 中的生命周期");
+        log.error("使用 @Transactional(require) 注解后，方法处于 Spring 事务管理，两次方法调用应该产生两次 SqlSession");
+        OrderDo orderDo = new OrderDo(10, "测试1", new Date());
+        OrderDo orderDo1 = new OrderDo(11, "测试2", new Date());
+        ArrayList<OrderDo> list = new ArrayList<>();
+        list.add(orderDo);
+        list.add(orderDo1);
+        log.error("第一次调用 tradeService.secKill()");
+        tradeService.secKill(list);
+        log.error("第二次调用 tradeService.secKill()");
+        tradeService.secKill(list);
+    }
+
+    @Test
+    public void tx_sqlSession_in_require_notRecommend() {
+        ConfigurableApplicationContext context = SpringApplication.run(IOCTest_Tx.class);
+        TradeService tradeService = context.getBean(TradeService.class);
+        OrderMapper orderMapper = context.getBean(OrderMapper.class);
+        log.error("测试 SqlSession 在 Spring 中的生命周期");
+        log.error("使用 @Transactional(require) 注解后，方法处于 Spring 事务管理，两次方法调用应该产生两次 SqlSession");
+        OrderDo orderDo = new OrderDo(10, "测试1", new Date());
+        OrderDo orderDo1 = new OrderDo(11, "测试2", new Date());
+        OrderDo orderDo2 = new OrderDo(12, "测试3", new Date());
+        orderMapper.insertOrder(orderDo2);
+        ArrayList<OrderDo> list = new ArrayList<>();
+        list.add(orderDo);
+        list.add(orderDo1);
+        log.error("第一次调用 tradeService.secKill()");
+        tradeService.secKillNotRecommend(list);
+//        log.error("第二次调用 tradeService.secKill()");
+//        tradeService.secKill(list);
+    }
+
+    @Test
+    public void tx_sqlSession_in_require_notRecommend2() {
+        ConfigurableApplicationContext context = SpringApplication.run(IOCTest_Tx.class);
+        TradeService tradeService = context.getBean(TradeService.class);
+        log.error("测试 SqlSession 在 Spring 中的生命周期");
+        log.error("使用 @Transactional(require) 注解后，方法处于 Spring 事务管理，两次方法调用应该产生两次 SqlSession");
+        OrderDo orderDo = new OrderDo(100, "测试11", new Date());
+        OrderDo orderDo1 = new OrderDo(111, "测试22", new Date());
+        ArrayList<OrderDo> list = new ArrayList<>();
+        list.add(orderDo);
+        list.add(orderDo1);
+        log.error("第一次调用 tradeService.secKill()");
+        tradeService.secKillNotRecommend2(list);
+//        log.error("第二次调用 tradeService.secKill()");
+//        tradeService.secKill(list);
     }
 
     //@Test
